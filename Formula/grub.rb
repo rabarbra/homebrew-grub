@@ -24,6 +24,10 @@ class Grub < Formula
     ENV.prepend_path "PATH", Formula["nativeos/i386-elf-toolchain/i386-elf-gcc"].bin
     ENV.prepend_path "PATH", Formula["nativeos/i386-elf-toolchain/i386-elf-binutils"].bin
 
+    # Use native compiler for build tools
+    ENV["CC"] = "gcc"
+    ENV["CFLAGS"] = "-Os"
+
     mkdir "build" do
       if build.head?
         system "../bootstrap"
@@ -44,12 +48,13 @@ class Grub < Formula
         --disable-grub-mkfont
         --disable-grub-themes
         --with-platform=pc
-        CC=i386-elf-gcc
+        --program-prefix=i386-elf-
         TARGET_CC=i386-elf-gcc
         TARGET_OBJCOPY=i386-elf-objcopy
         TARGET_STRIP=i386-elf-strip
         TARGET_NM=i386-elf-nm
         TARGET_RANLIB=i386-elf-ranlib
+        CFLAGS='-fno-stack-protector -no-pie'
       ]
 
       system "../configure", *args
@@ -59,6 +64,6 @@ class Grub < Formula
   end
 
   test do
-    system "#{bin}/grub-file", "--is-x86-multiboot", "#{bin}/grub-mkimage"
+    system "#{bin}/i386-elf-grub-file", "--is-x86-multiboot", "#{bin}/i386-elf-grub-mkimage"
   end
 end
