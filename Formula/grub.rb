@@ -26,7 +26,7 @@ class Grub < Formula
 
     # Use native compiler for build tools
     ENV["CC"] = "gcc"
-    ENV["CFLAGS"] = "-Os"
+    ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
 
     mkdir "build" do
       if build.head?
