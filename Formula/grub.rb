@@ -9,6 +9,7 @@ class Grub < Formula
     url "https://git.savannah.gnu.org/git/grub.git"
   end
 
+  depends_on "i686-elf-gcc" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "gettext" => :build
@@ -19,7 +20,18 @@ class Grub < Formula
   depends_on "make" => :build
   depends_on "objconv" => :build
 
+  resource "i686-elf-tools" do
+    url "https://github.com/nativeos/homebrew-i686-elf-tools.git"
+  end
+
   def install
+    # First install the i686-elf cross compiler tools
+    resource("i686-elf-tools").stage do
+      system "brew", "tap", "nativeos/i686-elf-tools"
+      system "brew", "install", "i686-elf-binutils"
+      system "brew", "install", "i686-elf-gcc"
+    end
+
     mkdir "build" do
       if build.head?
         system "../bootstrap"
@@ -45,3 +57,4 @@ class Grub < Formula
     system "#{bin}/grub-file", "--is-x86-multiboot", "#{bin}/grub-mkimage"
   end
 end
+
