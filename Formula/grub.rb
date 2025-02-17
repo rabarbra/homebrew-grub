@@ -9,19 +9,20 @@ class Grub < Formula
     url "https://git.savannah.gnu.org/git/grub.git"
   end
 
-  depends_on "i386-elf-gcc" => :build
+  depends_on "nativeos/i386-elf-toolchain/i386-elf-binutils" => :build
+  depends_on "nativeos/i386-elf-toolchain/i386-elf-gcc" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "gettext" => :build
   depends_on "texinfo" => :build
   depends_on "help2man" => :build
   depends_on "gcc" => :build
-  depends_on "binutils" => :build
   depends_on "make" => :build
   depends_on "objconv" => :build
 
   def install
-    ENV.prepend_path "PATH", Formula["i386-elf-gcc"].bin
+    ENV.prepend_path "PATH", Formula["nativeos/i386-elf-toolchain/i386-elf-gcc"].bin
+    ENV.prepend_path "PATH", Formula["nativeos/i386-elf-toolchain/i386-elf-binutils"].bin
 
     mkdir "build" do
       if build.head?
@@ -43,6 +44,7 @@ class Grub < Formula
         --disable-grub-mkfont
         --disable-grub-themes
         --with-platform=pc
+        CC=i386-elf-gcc
         TARGET_CC=i386-elf-gcc
         TARGET_OBJCOPY=i386-elf-objcopy
         TARGET_STRIP=i386-elf-strip
