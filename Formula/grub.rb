@@ -28,13 +28,13 @@ class Grub < Formula
 
       system "../configure",
              "--disable-werror",
-             "--target=i386-elf",
+             "--target=i686-elf",
              "--prefix=#{prefix}",
-             "TARGET_CC=i386-elf-gcc",
-             "TARGET_OBJCOPY=i386-elf-objcopy",
-             "TARGET_STRIP=i386-elf-strip",
-             "TARGET_NM=i386-elf-nm",
-             "TARGET_RANLIB=i386-elf-ranlib"
+             "TARGET_CC=i686-elf-gcc",
+             "TARGET_OBJCOPY=i686-elf-objcopy",
+             "TARGET_STRIP=i686-elf-strip",
+             "TARGET_NM=i686-elf-nm",
+             "TARGET_RANLIB=i686-elf-ranlib"
 
       system "make"
       system "make", "install"
