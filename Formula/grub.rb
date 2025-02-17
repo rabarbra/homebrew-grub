@@ -42,7 +42,7 @@ class Grub < Formula
         --disable-libzfs
         --disable-grub-mkfont
         --disable-grub-themes
-        --without-platform
+        --with-platform=pc
         TARGET_CC=i386-elf-gcc
         TARGET_OBJCOPY=i386-elf-objcopy
         TARGET_STRIP=i386-elf-strip
