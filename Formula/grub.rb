@@ -2,7 +2,7 @@ class Grub < Formula
   desc "GNU GRUB bootloader for i386-elf"
   homepage "https://www.gnu.org/software/grub/"
   url "https://ftp.gnu.org/gnu/grub/grub-2.12.tar.xz"
-  sha256 "b79ea44af91b93d17cd3fe80bdae6ed43770678a9a5ae192ccea803ebb657ee1"
+  sha256 "f3c97391f7c4eaa677a78e090c7e97e6dc47b16f655f04683ebd37bef7fe0faa"
   license "GPL-3.0-or-later"
 
   head do
