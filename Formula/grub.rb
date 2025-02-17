@@ -54,7 +54,6 @@ class Grub < Formula
         TARGET_STRIP=i386-elf-strip
         TARGET_NM=i386-elf-nm
         TARGET_RANLIB=i386-elf-ranlib
-        CFLAGS='-fno-stack-protector'
       ]
 
       system "../configure", *args
