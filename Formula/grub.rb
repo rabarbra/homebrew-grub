@@ -9,7 +9,7 @@ class Grub < Formula
     url "https://git.savannah.gnu.org/git/grub.git"
   end
 
-  depends_on "i686-elf-gcc" => :build
+  depends_on "i386-elf-gcc" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "gettext" => :build
@@ -20,17 +20,8 @@ class Grub < Formula
   depends_on "make" => :build
   depends_on "objconv" => :build
 
-  resource "i686-elf-tools" do
-    url "https://github.com/nativeos/homebrew-i686-elf-tools.git"
-  end
-
   def install
-    # First install the i686-elf cross compiler tools
-    resource("i686-elf-tools").stage do
-      system "brew", "tap", "nativeos/i686-elf-tools"
-      system "brew", "install", "i686-elf-binutils"
-      system "brew", "install", "i686-elf-gcc"
-    end
+    ENV.prepend_path "PATH", Formula["i386-elf-gcc"].bin
 
     mkdir "build" do
       if build.head?
@@ -38,16 +29,28 @@ class Grub < Formula
         system "../autogen.sh"
       end
 
-      system "../configure",
-             "--disable-werror",
-             "--target=i686-elf",
-             "--prefix=#{prefix}",
-             "TARGET_CC=i686-elf-gcc",
-             "TARGET_OBJCOPY=i686-elf-objcopy",
-             "TARGET_STRIP=i686-elf-strip",
-             "TARGET_NM=i686-elf-nm",
-             "TARGET_RANLIB=i686-elf-ranlib"
+      args = %W[
+        --disable-werror
+        --target=i386-elf
+        --prefix=#{prefix}
+        --disable-nls
+        --disable-efiemu 
+        --disable-device-mapper
+        --disable-grub-mount
+        --disable-lua
+        --disable-liblzma
+        --disable-libzfs
+        --disable-grub-mkfont
+        --disable-grub-themes
+        --without-platform
+        TARGET_CC=i386-elf-gcc
+        TARGET_OBJCOPY=i386-elf-objcopy
+        TARGET_STRIP=i386-elf-strip
+        TARGET_NM=i386-elf-nm
+        TARGET_RANLIB=i386-elf-ranlib
+      ]
 
+      system "../configure", *args
       system "make"
       system "make", "install"
     end
@@ -57,4 +60,3 @@ class Grub < Formula
     system "#{bin}/grub-file", "--is-x86-multiboot", "#{bin}/grub-mkimage"
   end
 end
-
