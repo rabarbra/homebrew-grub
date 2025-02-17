@@ -48,7 +48,7 @@ class Grub < Formula
         --disable-grub-mkfont
         --disable-grub-themes
         --with-platform=pc
-        --program-prefix=i386-elf-
+        --program-prefix=
         TARGET_CC=i386-elf-gcc
         TARGET_OBJCOPY=i386-elf-objcopy
         TARGET_STRIP=i386-elf-strip
