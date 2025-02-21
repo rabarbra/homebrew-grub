@@ -58,6 +58,17 @@ class X8664ElfGrub < Formula
 
   test do
     target = "x86_64-elf"
-    system "#{bin}/#{target}-grub-file", "--is-x86-multiboot", "#{bin}/#{target}-grub-mkimage"
+    (testpath/"boot.c").write <<~END
+    __asm__(
+      ".align 4\n"
+      ".long 0x1BADB002\n"
+      ".long 0x0\n"
+      ".long -(0x1BADB002 + 0x0)\n"
+    );
+    END
+
+    system bin/#{target}-gcc, "-c", "-o", "boot", "boot.c"
+    assert_match "0",
+      shell_output("#{bin}/#{target}-grub-file --is-x86-multiboot boot")
   end
 end
