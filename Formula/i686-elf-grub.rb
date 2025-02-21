@@ -25,13 +25,10 @@ class I686ElfGrub < Formula
 
     mkdir "build" do
       args = %W[
-        # --disable-werror
         --target=#{target}
         --prefix=#{prefix}/#{target}
         --bindir=#{bin}
         --libdir=#{lib}/#{target}
-        # --datarootdir=#{share}/#{target}
-        # --sysconfdir=#{etc}/#{target}
         --with-platform=pc
         --program-prefix=#{target}-
         TARGET_CC=#{target}-gcc
