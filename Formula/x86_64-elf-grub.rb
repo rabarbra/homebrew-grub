@@ -59,12 +59,7 @@ class X8664ElfGrub < Formula
   test do
     target = "x86_64-elf"
     (testpath/"boot.c").write <<~END
-    __asm__(
-      ".align 4\n"
-      ".long 0x1BADB002\n"
-      ".long 0x0\n"
-      ".long -(0x1BADB002 + 0x0)\n"
-    );
+    __asm__(".align 4\n.long 0x1BADB002\n.long 0x0\n.long -(0x1BADB002 + 0x0)");
     END
 
     system Formula["#{target}-gcc"].bin/"#{target}-gcc", "-c", "-o", "boot", "boot.c"
