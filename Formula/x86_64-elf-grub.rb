@@ -15,7 +15,7 @@ class X8664ElfGrub < Formula
   depends_on "gcc" => :build
   depends_on "make" => :build
   depends_on "objconv" => :build
-  depends_on "x86_64-elf-gcc" => :build
+  depends_on "x86_64-elf-gcc" => [:build, :test]
   depends_on "x86_64-elf-binutils" => :build
 
   def install
@@ -60,6 +60,3 @@ class X8664ElfGrub < Formula
       shell_output("#{bin}/#{target}-grub-file --is-x86-multiboot boot; echo $?")
   end
 end
-
-# --datarootdir=#{share}/#{target}
-# --sysconfdir=#{etc}/#{target}

@@ -15,7 +15,7 @@ class I686ElfGrub < Formula
   depends_on "gcc" => :build
   depends_on "make" => :build
   depends_on "objconv" => :build
-  depends_on "i686-elf-gcc" => :build
+  depends_on "i686-elf-gcc" => [:build, :test]
   depends_on "i686-elf-binutils" => :build
 
   def install
