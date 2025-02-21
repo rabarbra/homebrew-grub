@@ -37,13 +37,13 @@ class X8664ElfGrub < Formula
         TARGET_NM=#{target}-nm
         TARGET_RANLIB=#{target}-ranlib
       ]
-      
+
       system "../configure", *args
       system "make"
       system "make", "install"
     end
   end
-  
+
   test do
     target = "x86_64-elf"
     (testpath/"boot.c").write <<~C
