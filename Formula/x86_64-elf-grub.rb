@@ -15,7 +15,7 @@ class X8664ElfGrub < Formula
   depends_on "make" => :build
   depends_on "objconv" => :build
   depends_on "texinfo" => :build
-  depends_on "x86_64-elf-gcc" => :build
+  depends_on "x86_64-elf-gcc" => [:build, :test]
   depends_on "x86_64-elf-binutils" => :build
 
   def install
