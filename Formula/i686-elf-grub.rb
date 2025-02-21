@@ -68,8 +68,8 @@ class I686ElfGrub < Formula
     );
     END
 
-    system bin/#{target}-gcc, "-c", "-o", "boot", "boot.c"
+    system "bin/#{target}-gcc", "-c", "-o", "boot", "boot.c"
     assert_match "0",
-      shell_output("#{bin}/#{target}-grub-file --is-x86-multiboot boot")
+      shell_output("#{bin}/#{target}-grub-file --is-x86-multiboot boot; echo $?")
   end
 end
