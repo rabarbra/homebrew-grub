@@ -20,7 +20,6 @@ class X8664ElfGrub < Formula
 
   def install
     target = "x86_64-elf"
-    ENV["CC"] = "gcc"
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
 
     mkdir "build" do
