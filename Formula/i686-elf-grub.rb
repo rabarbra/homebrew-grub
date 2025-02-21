@@ -12,6 +12,7 @@ class I686ElfGrub < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "bison" => :build
+  depends_on "flex" => :build
   depends_on "gettext" => :build
   depends_on "texinfo" => :build
   depends_on "help2man" => :build
