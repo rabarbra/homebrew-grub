@@ -35,6 +35,10 @@ class I686ElfGrub < Formula
         --disable-werror
         --target=#{target}
         --prefix=#{prefix}
+        --libdir=#{lib}/#{target}
+        --infodir=#{info}/#{target}
+        --sysconfdir=#{etc}/#{target}
+        --datarootdir=#{share}/#{target}
         --disable-nls
         --disable-efiemu 
         --disable-device-mapper
@@ -44,7 +48,7 @@ class I686ElfGrub < Formula
         --disable-libzfs
         --disable-grub-mkfont
         --disable-grub-themes
-        --with-platform=efi
+        --with-platform=pc
         --program-prefix=#{target}-
         TARGET_CC=#{target}-gcc
         TARGET_OBJCOPY=#{target}-objcopy
