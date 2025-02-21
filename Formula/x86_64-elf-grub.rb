@@ -25,13 +25,11 @@ class X8664ElfGrub < Formula
 
     mkdir "build" do
       args = %W[
-        # --disable-werror
+        --disable-werror
         --target=#{target}
         --prefix=#{prefix}/#{target}
         --bindir=#{bin}
         --libdir=#{lib}/#{target}
-        # --datarootdir=#{share}/#{target}
-        # --sysconfdir=#{etc}/#{target}
         --with-platform=pc
         --program-prefix=#{target}-
         TARGET_CC=#{target}-gcc
@@ -40,13 +38,13 @@ class X8664ElfGrub < Formula
         TARGET_NM=#{target}-nm
         TARGET_RANLIB=#{target}-ranlib
       ]
-
+      
       system "../configure", *args
       system "make"
       system "make", "install"
     end
   end
-
+  
   test do
     target = "x86_64-elf"
     (testpath/"boot.c").write <<~C
@@ -62,3 +60,6 @@ class X8664ElfGrub < Formula
       shell_output("#{bin}/#{target}-grub-file --is-x86-multiboot boot; echo $?")
   end
 end
+
+# --datarootdir=#{share}/#{target}
+# --sysconfdir=#{etc}/#{target}
