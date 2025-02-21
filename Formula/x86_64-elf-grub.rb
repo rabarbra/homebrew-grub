@@ -34,16 +34,11 @@ class X8664ElfGrub < Formula
       args = %W[
         --disable-werror
         --target=#{target}
-        --prefix=#{prefix}
-        --disable-nls
-        --disable-efiemu 
-        --disable-device-mapper
-        --disable-grub-mount
-        --disable-lua
-        --disable-liblzma
-        --disable-libzfs
-        --disable-grub-mkfont
-        --disable-grub-themes
+        --prefix=#{prefix}/#{target}
+        --bindir=#{bin}
+        --libdir=#{lib}/#{target}
+        --datarootdir=#{share}/#{target}
+        --sysconfdir=#{etc}/#{target}
         --with-platform=pc
         --program-prefix=#{target}-
         TARGET_CC=#{target}-gcc
