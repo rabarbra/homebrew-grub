@@ -7,7 +7,7 @@ class X8664ElfGrub < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
-  depends_on "gcc" => :build
+  depends_on "gcc@11" => [:build, :test]
   depends_on "gettext" => :build
   depends_on "help2man" => :build
   depends_on "make" => :build
@@ -15,8 +15,10 @@ class X8664ElfGrub < Formula
   depends_on "texinfo" => :build
   depends_on "x86_64-elf-binutils" => :build
   depends_on "x86_64-elf-gcc" => [:build, :test]
+  depends_on "xz"
   uses_from_macos "bison" => :build
   uses_from_macos "flex" => :build
+  uses_from_macos "python" => :build
 
   def install
     target = "x86_64-elf"

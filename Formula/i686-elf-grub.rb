@@ -7,7 +7,7 @@ class I686ElfGrub < Formula
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
-  depends_on "gcc" => :build
+  depends_on "gcc@11" => [:build, :test]
   depends_on "gettext" => :build
   depends_on "help2man" => :build
   depends_on "i686-elf-binutils" => :build
@@ -15,8 +15,10 @@ class I686ElfGrub < Formula
   depends_on "make" => :build
   depends_on "objconv" => :build
   depends_on "texinfo" => :build
+  depends_on "xz"
   uses_from_macos "bison" => :build
   uses_from_macos "flex" => :build
+  uses_from_macos "python" => :build
 
   def install
     target = "i686-elf"
