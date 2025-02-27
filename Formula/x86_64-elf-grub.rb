@@ -25,11 +25,7 @@ class X8664ElfGrub < Formula
     mkdir "build" do
       args = %W[
         --disable-werror
-        --enable-font-source
         --target=#{target}
-        --prefix=#{prefix}/#{target}
-        --bindir=#{bin}
-        --libdir=#{lib}/#{target}
         --with-platform=efi
         --program-prefix=#{target}-
       ]
