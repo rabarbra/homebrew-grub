@@ -19,9 +19,20 @@ class X8664ElfGrub < Formula
   uses_from_macos "flex" => :build
   uses_from_macos "python" => :build
 
+  resource "unifont" do
+    url "https://ftp.gnu.org/gnu/unifont/unifont-16.0.02/unifont-16.0.02.pcf.gz"
+    mirror "https://mirrors.ocf.berkeley.edu/gnu/unifont/unifont-16.0.02/unifont-16.0.02.pcf.gz"
+    sha256 "6c352946852282af29ea65c95e73a5a1a05e7e7f970209ce5c56364ff2edfbe9"
+  end
+
   def install
     target = "x86_64-elf"
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
+
+    resource("unifont").stage do
+      (buildpath/"unifont").install "unifont-16.0.02.pcf.gz"
+    end
+    ENV["UNIFONT"] = buildpath/"unifont/unifont-16.0.02.pcf.gz"
 
     mkdir "build" do
       args = %W[
@@ -38,6 +49,12 @@ class X8664ElfGrub < Formula
       system "../configure", *args
       system "make"
       system "make", "install"
+
+      mkdir_p "#{prefix}/#{target}/share/grub"
+
+      system "./grub-mkfont",
+        "--output=#{prefix}/#{target}/share/grub/unicode.pf2",
+        "#{ENV["UNIFONT"]}"
     end
   end
 
