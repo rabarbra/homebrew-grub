@@ -13,6 +13,7 @@ class X8664ElfGrub < Formula
   depends_on "x86_64-elf-gcc" => [:build, :test]
   depends_on "freetype"
   depends_on "gettext"
+  depends_on "mtools"
   depends_on "xorriso"
   depends_on "xz"
   uses_from_macos "bison" => :build
