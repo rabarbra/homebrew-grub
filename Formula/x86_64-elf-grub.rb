@@ -7,6 +7,7 @@ class X8664ElfGrub < Formula
   license "GPL-3.0-or-later"
 
   depends_on "help2man" => :build
+  depends_on "make" => :build
   depends_on "objconv" => :build
   depends_on "texinfo" => :build
   depends_on "x86_64-elf-binutils" => :build
@@ -27,8 +28,8 @@ class X8664ElfGrub < Formula
         --disable-werror
         --target=#{target}
         --prefix=#{prefix}/#{target}
+        --bindir=#{bin}
         --libdir=#{lib}/#{target}
-        --with-fontsdir=#{prefix}/#{target}/share/grub
         --with-platform=efi
         --program-prefix=#{target}-
       ]
