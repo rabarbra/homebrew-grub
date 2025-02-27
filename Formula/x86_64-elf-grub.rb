@@ -22,7 +22,7 @@ class X8664ElfGrub < Formula
   resource "unifont" do
     url "https://ftp.gnu.org/gnu/unifont/unifont-16.0.02/unifont-16.0.02.pcf.gz"
     mirror "https://mirrors.ocf.berkeley.edu/gnu/unifont/unifont-16.0.02/unifont-16.0.02.pcf.gz"
-    sha256 "6c352946852282af29ea65c95e73a5a1a05e7e7f970209ce5c56364ff2edfbe9"
+    sha256 "02a3fe11994d3cdaf1d4bd5d2b6b609735e6823e01764ae83b704e02ec2f640d"
   end
 
   def install
