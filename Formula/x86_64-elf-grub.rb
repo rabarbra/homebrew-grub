@@ -30,9 +30,9 @@ class X8664ElfGrub < Formula
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
 
     resource("unifont").stage do
-      (buildpath/"unifont").install "unifont-16.0.02.pcf.gz"
+      cp "unifont-16.0.02.pcf.gz", buildpath/"unifont.pcf.gz"
     end
-    ENV["UNIFONT"] = buildpath/"unifont/unifont-16.0.02.pcf.gz"
+    ENV["UNIFONT"] = buildpath/"unifont.pcf.gz"
 
     mkdir "build" do
       args = %W[
