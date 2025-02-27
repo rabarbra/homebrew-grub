@@ -54,7 +54,7 @@ class X8664ElfGrub < Formula
 
       system "./grub-mkfont",
         "--output=#{prefix}/#{target}/share/grub/unicode.pf2",
-        "#{ENV["UNIFONT"]}"
+        ENV["UNIFONT"].to_s
     end
   end
 
