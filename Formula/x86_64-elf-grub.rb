@@ -29,12 +29,10 @@ class X8664ElfGrub < Formula
     target = "x86_64-elf"
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
 
-    unifont_dir = buildpath/"unifont"
-    unifont_dir.mkpath
     resource("unifont").stage do
-      cp "unifont-16.0.02.pcf.gz", unifont_dir
+      cp "unifont-16.0.02.pcf.gz", buildpath/"unifont.pcf.gz"
     end
-    ENV["UNIFONT"] = "#{unifont_dir}/unifont-16.0.02.pcf.gz"
+    ENV["UNIFONT"] = buildpath/"unifont.pcf.gz"
 
     mkdir "build" do
       args = %W[
