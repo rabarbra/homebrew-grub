@@ -11,6 +11,7 @@ class X8664ElfGrub < Formula
   depends_on "texinfo" => :build
   depends_on "x86_64-elf-binutils" => :build
   depends_on "x86_64-elf-gcc" => [:build, :test]
+  depends_on "freetype"
   depends_on "gettext"
   depends_on "xorriso"
   depends_on "xz"
