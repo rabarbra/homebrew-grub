@@ -26,6 +26,9 @@ class X8664ElfGrub < Formula
       args = %W[
         --disable-werror
         --target=#{target}
+        --prefix=#{prefix}/#{target}
+        --libdir=#{lib}/#{target}
+        --with-fontsdir=#{prefix}/#{target}/share/grub
         --with-platform=efi
         --program-prefix=#{target}-
       ]
