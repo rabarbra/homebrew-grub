@@ -25,7 +25,6 @@ class I686ElfGrub < Formula
     mkdir "build" do
       args = %W[
         --disable-werror
-        --enable-font-source
         --target=#{target}
         --prefix=#{prefix}/#{target}
         --bindir=#{bin}
