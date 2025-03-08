@@ -49,8 +49,7 @@ class X8664ElfGrub < Formula
       ]
 
       system "../configure", *args
-      mkdir_p "../../grub-core"
-      system "touch", "../../grub-core/extra-deps.lst"
+      system "touch", "grub-core/extra-deps.lst"
       system "make"
       system "make", "install"
 
