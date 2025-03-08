@@ -39,7 +39,7 @@ class X8664ElfGrub < Formula
     mkdir_p "../grub-core"
     system "touch", "../grub-core/extra-deps.lst"
     system "pwd"
-    system "ls". "../"
+    system "ls", "../"
     system "echo", buildpath
 
     mkdir "build" do
