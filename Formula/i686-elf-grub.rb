@@ -6,6 +6,7 @@ class I686ElfGrub < Formula
   sha256 "f3c97391f7c4eaa677a78e090c7e97e6dc47b16f655f04683ebd37bef7fe0faa"
   license "GPL-3.0-or-later"
 
+  depends_on "gawk" => :build
   depends_on "help2man" => :build
   depends_on "i686-elf-binutils" => :build
   depends_on "i686-elf-gcc" => [:build, :test]
@@ -21,6 +22,7 @@ class I686ElfGrub < Formula
   def install
     target = "i686-elf"
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
+    ENV["PATH"]=prefix/"opt/gawk/libexec/gnubin:#{ENV["PATH"]}"
 
     system "touch", buildpath/"grub-core/extra_deps.lst"
 
