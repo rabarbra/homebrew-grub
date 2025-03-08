@@ -32,6 +32,8 @@ class X8664ElfGrub < Formula
     ENV["CFLAGS"] = "-Os -Wno-error=incompatible-pointer-types"
     ENV["PATH"]=prefix/"opt/gawk/libexec/gnubin:#{ENV["PATH"]}"
 
+    system "which", "awk"
+
     resource("unifont").stage do
       cp "unifont-16.0.02.pcf.gz", buildpath/"unifont.pcf.gz"
     end
