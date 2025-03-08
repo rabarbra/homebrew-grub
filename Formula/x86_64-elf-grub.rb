@@ -36,9 +36,9 @@ class X8664ElfGrub < Formula
     end
     ENV["UNIFONT"] = buildpath/"unifont.pcf.gz"
 
-    mkdir_p "../grub-core"
-    system "touch", "../grub-core/extra_deps.lst"
-    # system "touch", buildpath/"grub-core/extra_deps.lst"
+    # mkdir_p "../grub-core"
+    # system "touch", "../grub-core/extra_deps.lst"
+    system "touch", buildpath/"grub-core/extra_deps.lst"
 
     mkdir "build" do
       args = %W[
