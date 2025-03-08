@@ -36,6 +36,11 @@ class X8664ElfGrub < Formula
     end
     ENV["UNIFONT"] = buildpath/"unifont.pcf.gz"
 
+    mkdir_p "grub-core"
+    system "touch", "grub-core/extra-deps.lst"
+    system "pwd"
+    system "ls"
+
     mkdir "build" do
       args = %W[
         --disable-werror
@@ -49,7 +54,6 @@ class X8664ElfGrub < Formula
       ]
 
       system "../configure", *args
-      system "touch", "grub-core/extra-deps.lst"
       system "make"
       system "make", "install"
 
